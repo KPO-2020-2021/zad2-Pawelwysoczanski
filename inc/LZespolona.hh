@@ -24,7 +24,12 @@ struct  LZespolona {
 bool  operator == (LZespolona  Skl1,  LZespolona  Skl2);
 
 LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2);
-
+LZespolona operator- (LZespolona Skl1,LZespolona Skl2);
+LZespolona operator /(LZespolona Skl1,LZespolona Skl2);
 LZespolona operator / (LZespolona Skl1, double Skl2);
+LZespolona operator * (LZespolona Skl1,LZespolona Skl2);
+LZespolona Sprzezenie(LZespolona Skl2);
+double modul2(LZespolona Skl2);
+void Wyswietl(LZespolona Skl1);
 
 #endif

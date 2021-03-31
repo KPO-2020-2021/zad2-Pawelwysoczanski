@@ -1,37 +1,31 @@
-#ifndef WYRAZENIEZESP_HH
-#define WYRAZENIEZESP_HH
+#ifndef BAZATESTU_HH
+#define BAZATESTU_HH
 
-#include "LZespolona.hh"
 
-/*!
- * Modeluje zbior operatorow arytmetycznych.
- */
-enum Operator
-{
-  Op_Dodaj,
-  Op_Odejmij,
-  Op_Mnoz,
-  Op_Dziel
-};
+#include "WyrazenieZesp.hh"
+
 
 /*
- * Modeluje pojecie dwuargumentowego wyrazenia zespolonego
+ * Modeluje pojecie baze testu z zestawem pytan w tablicy
+ * oraz informacji o maksymalnej ilosci pytan, jak
+ * tez indeksem nastepnego pytania, ktore ma byc pobrane
+ * z bazy.
  */
-struct WyrazenieZesp
-{
-  LZespolona Arg1; // Pierwszy argument wyrazenia arytmetycznego
-  Operator Op;     // Opertor wyrazenia arytmetycznego
-  LZespolona Arg2; // Drugi argument wyrazenia arytmetycznego
+struct BazaTestu {
+  WyrazenieZesp  *wskTabTestu;   /* Wskaznik na tablice zawierajaca pytania testu */
+  unsigned int    IloscPytan;    /* Ilosc wszystkich pytan */
+  unsigned int    IndeksPytania; /* Numer pytania, ktore ma byc pobrane jako nastepne */
 };
 
-/*
- * Funkcje ponizej nalezy zdefiniowac w module.
- *
- */
 
-//WyrazenieZesp Wczytaj(WyrazenieZesp Wyrz);
-void Wyswietl(WyrazenieZesp WyrZ);
-LZespolona Oblicz(WyrazenieZesp WyrZ);
-std::istream &operator>>(std::istream &StrmWej, WyrazenieZesp Skl1);
-std::ostream &operator<<(std::ostream &StrmWyj, WyrazenieZesp Skl1);
+/*
+ * Inicjalizuje test powiazany z dana nazwa.
+ */
+bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char*  sNazwaTestu );
+/*
+ * Udostepnia nastepne pytanie z bazy.
+ */
+bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
+
 #endif
+

@@ -1,5 +1,9 @@
 # Projekt 2 - Arytmetyka liczb zespolonych
 
+## Zmiany
+Wrzucony program nie jest 100% gotowy, obecnie znajduje się w fazie porządkowania jak i dodawania potrzebnych lementów oraz poprawiania. Do obecnej wersi zostały wprowadzone potrzebne modyfikacje, które miały zostać wykonane do czwartku do godziny 14. Gotowy program postaram się wrzucić do końca tygodnia i rozumiem, że wiązać sie to będzie z konsekwencjami utraty punktów za spóźnienie.
+
+
 ## Cel ćwiczenia
 Wykształcenie umiejętności definiowania przeciążeń operatorów arytmetycznych dwuargumentowych i jednoargumentowych dla własnych struktur danych oraz operatora porównania. Przećwiczenie podstawowych operacji na strumieniach plikowych.  Nabycie umiejętności definiowania przeciążeń operacji na strumieniach.
 

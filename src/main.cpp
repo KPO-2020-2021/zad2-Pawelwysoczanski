@@ -3,7 +3,7 @@
 #include "Statystyki.hh"
 #include "WyrazenieZesp.hh"
 #include "LZespolona.hh"
-
+#define PI 3.141592
 int main(int argc, char **argv)
 {
   Statystyka odp;
@@ -18,6 +18,12 @@ int main(int argc, char **argv)
   }
 
   BazaTestu BazaT = {nullptr, 0, 0};
+  LZespolona liczba, l1;
+
+  std::cout << "Wartość Argumentu głównego dla kąta 45 stopni zapis liczby (1+1i) w radianach: " << PI / 4 << std::endl;
+  std ::cout << "Podaj liczbe zesp" << std::endl;
+  std::cin >> l1;
+  std::cout << "Argument glowny: " << arg(l1) << std::endl;
 
   if (InicjalizujTest(&BazaT, argv[1]) == false)
   {
@@ -25,12 +31,12 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  std::cout << std::endl;
-  std::cout << " Start testu arytmetyki zespolonej: " << argv[1] << std::endl;
-  std::cout << std::endl;
-
   WyrazenieZesp WyrZ_PytanieTestowe;
-  LZespolona liczba;
+
+  std ::cout << "Podaj liczbe zesp" << std::endl;
+  std::cin >> l1;
+  std::cout << "Argument glowny: " << arg(l1) << std::endl;
+
   try
   {
 
@@ -52,13 +58,13 @@ int main(int argc, char **argv)
     std::cout << "Exception occurred" << std::endl
               << e.what();
   }
-  Statystyka WyswietlWyniki(odp);
 
-  Statystyka Inicjalizuj(odp);
-
-  std::cout << "ilosc pop: " << odp.poprawna << std::endl;
-  std::cout << "ilosc npop: " << odp.niepoprawna << std::endl;
+  //Sprzezenie(liczba);
+  DodajPoprawna(odp);
+  DodajNiepoprawna(odp);
 
   std::cout << " Koniec testu" << std::endl;
   std::cout << std::endl;
+  std::cout << std::endl;
+  WyswietlWyniki(odp);
 }

@@ -18,30 +18,46 @@ struct LZespolona
 {
   double re; /*! Pole repezentuje czesc rzeczywista. */
   double im; /*! Pole repezentuje czesc urojona. */
+
+  void Sprzezenie(); /*Fukcja tworzaca sprzezenie liczby zespolonej*/
 };
+/*
+*  Przeciazenia operatorow arytmetycznych
+*/
 
-bool operator==(LZespolona Skl1, LZespolona Skl2); /*Funkja porownujaca dwie liczby zespolone*/
+double arg(LZespolona Skl1);
 
-LZespolona operator+(LZespolona Skl1, LZespolona Skl2); /*Funkcja dodajaca dwie liczby zespolone*/
+LZespolona operator += (LZespolona Skl1, LZespolona Skl2);
 
-LZespolona operator/(LZespolona Skl1, double Skl2); /*Funkcja wykonujaca operacje dzielenia liczby zespolonej przez skalar*/
+LZespolona operator+(LZespolona Skl1, LZespolona Skl2); /*opearcja dodania dwoczh liczb zespolonych*/
 
-void WczytajTenZnak(std::istream &StrmWej, char Znak); /**/
+LZespolona operator/(LZespolona Skl1, double Skl2); /* operacja dzielenia liczby zespolonej przez skalar*/
 
-LZespolona operator-(LZespolona Skl1, LZespolona Skl2); /*Funkcja odjemujaca dwie liczby zespolone*/
+LZespolona operator-(LZespolona Skl1, LZespolona Skl2); /*operacja odjecia dwoch liczb zespolonych*/
 
-LZespolona operator/(LZespolona Skl1, LZespolona Skl2);/*Funkcja wykonujaca operacje dzielenia dwoch liczb zespolonych*/
+LZespolona operator/(LZespolona Skl1, LZespolona Skl2); /*operacja dzielenia dwoch liczb zespolonych*/
 
-LZespolona operator*(LZespolona Skl1, LZespolona Skl2); /*Funkcja wykonujaca operacje mnozenia dwoch liczb zespolonych*/
+LZespolona operator*(LZespolona Skl1, LZespolona Skl2); /* operacje mnozenia dwoch liczb zespolonych*/
 
-LZespolona Sprzezenie(LZespolona Skl2); /*Fukcja tworzaca sprzezenie liczby zespolonej*/
+LZespolona operator/=(LZespolona Skl1, LZespolona Skl2);
 
-double modul2(LZespolona Skl2); /*Funkcja tworzaca modul w postaci skalarnej z liczby zespolonej podniesiony do kwadratu*/
+LZespolona operator/=(LZespolona Skl1, double Skl2);
+/*
+*
+*/
+
+void Sprzezenie(LZespolona &Skl2); /*Fukcja tworzaca sprzezenie liczby zespolonej*/
 
 std::istream &operator>>(std::istream &StrmWej, LZespolona &LZesp); /*Funkcja przeciazenia operatora przesuniecia bitowego w prawo*/
 
 std::ostream &operator<<(std::ostream &StrmWyj, LZespolona LZesp); /*Funkcja przeciazenia operatora przesuniecia bitowego w lewo*/
 
+bool operator==(LZespolona Skl1, LZespolona Skl2); /*Funkja porownujaca dwie liczby zespolone*/
+
 void Wyswietl(LZespolona Skl1); /*Funkcja wyswietlajaca liczbe zespolona*/
+
+void WczytajTenZnak(std::istream &StrmWej, char Znak); /**/
+
+double modul2(LZespolona Skl2); /*Funkcja tworzaca modul w postaci skalarnej z liczby zespolonej podniesiony do kwadratu*/
 
 #endif

@@ -11,16 +11,17 @@
  */
 struct Statystyka
 {
-    int poprawna;    /*Ilosc poprawnych odpowiedzi*/
-    int niepoprawna; /*Ilosc niepoprawnych odpowiedzi*/
+    int poprawna = 0;    /*Ilosc poprawnych odpowiedzi*/
+    int niepoprawna = 0; /*Ilosc niepoprawnych odpowiedzi*/
     double procent;
-};
 
-void DodajPoprawna(Statystyka &odp);    /*Funkcja zliczajaca ilosc poprawnych odpowiedzi*/
-void DodajNiepoprawna(Statystyka &odp); /*Funkcja zliczajaca ilosc blednych odpowiedzi*/
-void Wykonaj();                         /*Funkcja wykonujaca podsumowanie poprze wyliczenie wyniku procentowego odpowiedzi poprawnych do sumy mozliwych */
-void WyswietlWyniki(Statystyka odp);   /*Funkcja wyswietlajaca podsumowanie*/
-void Inicjalizuj(Statystyka odp);
-std::ostream &operator<<(std::ostream StrmWyj, Statystyka odp);
+    void DodajPoprawna();    /*Funkcja zliczajaca ilosc poprawnych odpowiedzi*/
+    
+    void DodajNiepoprawna(); /*Funkcja zliczajaca ilosc blednych odpowiedzi*/
+    
+    double Wykonaj();        /*Funkcja wykonujaca podsumowanie poprze wyliczenie wyniku procentowego odpowiedzi poprawnych do sumy mozliwych */
+    
+    void WyswietlWyniki();   /*Funkcja wyswietlajaca podsumowanie*/
+};
 
 #endif

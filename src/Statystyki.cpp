@@ -4,42 +4,35 @@
 /*
 *Funkcja odpowiadajaca za zliczanie dobrych odpowiedzi uzytkownika
 */
-void DodajPoprawna(Statystyka &odp)
+void Statystyka::DodajPoprawna()
 {
-    odp.poprawna++;
+    poprawna++;
 }
 /*
 *Funkcja odpowiadajac za zliczanie blednych odpowiedzi uzytkownika
 */
-void DodajNiepoprawna(Statystyka &odp)
+void Statystyka::DodajNiepoprawna()
 {
-    odp.niepoprawna++;
+    niepoprawna++;
 }
 /*
 *Funkcja odpowiadajaca za wyliczenie wyniku procentowego
 */
-double Wykonaj(Statystyka &odp)
+double Statystyka::Wykonaj()
 {
-    Statystyka Wynik;
-    Wynik.procent = (odp.poprawna / (odp.poprawna + odp.niepoprawna)*100);
 
-    return Wynik.procent;
+    procent = ((double)poprawna / ((double)poprawna + (double)niepoprawna) * 100);
+
+    return procent;
 }
 /*
 *Funkcja odpowiadajaca za wyswietlenie podsumowania sprawdzianu
 */
-void WyswietlWyniki(Statystyka odp)
+void Statystyka::WyswietlWyniki()
 {
 
-    double Wynik = Wykonaj(odp);
-    std::cout << "Ilosc dobrych odpowiedzi: " << odp.poprawna << std::endl;
-    std::cout << "Ilosc blednych odpowiedzi: " << odp.niepoprawna << std::endl;
-    std::cout << "Wynik w procentach: " << Wynik << "%" << std::endl;
-
-}
-void Inicjalizuj(Statystyka odp)
-{
-
-    odp.poprawna = 0;
-    odp.niepoprawna = 0;
+    double Wynik = Wykonaj();
+    std::cout << "Ilosc dobrych odpowiedzi: " << poprawna << std::endl;
+    std::cout << "Ilosc blednych odpowiedzi: " << niepoprawna << std::endl;
+    std::cout << "Wynik procentowy poprawnych odpowiedzi: " << Wynik << "%" << std::endl;
 }

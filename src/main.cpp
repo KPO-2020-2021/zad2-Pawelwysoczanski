@@ -7,6 +7,7 @@
 int main(int argc, char **argv)
 {
   Statystyka odp;
+  LZespolona liczba;
 
   if (argc < 2)
   {
@@ -17,13 +18,11 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  BazaTestu BazaT = {nullptr, 0, 0};
-  LZespolona liczba, l1;
+  std::cout << std::endl;
+  std::cout << "Sprawdzian liczb zespolonych" << std::endl;
+  std::cout << std::endl;
 
-  std::cout << "Wartość Argumentu głównego dla kąta 45 stopni zapis liczby (1+1i) w radianach: " << PI / 4 << std::endl;
-  std ::cout << "Podaj liczbe zesp" << std::endl;
-  std::cin >> l1;
-  std::cout << "Argument glowny: " << arg(l1) << std::endl;
+  BazaTestu BazaT = {nullptr, 0, 0};
 
   if (InicjalizujTest(&BazaT, argv[1]) == false)
   {
@@ -33,10 +32,6 @@ int main(int argc, char **argv)
 
   WyrazenieZesp WyrZ_PytanieTestowe;
 
-  std ::cout << "Podaj liczbe zesp" << std::endl;
-  std::cin >> l1;
-  std::cout << "Argument glowny: " << arg(l1) << std::endl;
-
   try
   {
 
@@ -44,9 +39,44 @@ int main(int argc, char **argv)
     {
       std::cout << ":? Podaj wynik operacji: ";
       std::cout << WyrZ_PytanieTestowe << "=" << std::endl;
-      std::cin >> liczba;
 
-      std::cout << "Twoja odpowiedz: " << liczba << std::endl;
+      for (int i = 0; i < 3; i++) /*Petla odpowiadajaca za mozliwosc ponownego wprowadzenia odpowiedzi*/
+      {
+
+        std::cin >> liczba;
+
+        if (std::cin.fail()) /*Sprawdzenie poprawnosci zapisu liczby zespolonej*/
+        {
+          std::cout << std::endl;
+          std::cout << "Blad zapisu liczby zespolonej. Sprobuj jeszcze raz" << std::endl;
+          std::cout << std::endl;
+
+          std::cin.clear();
+          std::cin.ignore();
+        }
+        else
+          break;
+      }
+      if (liczba == WyrZ_PytanieTestowe.Oblicz()) /*Jesli odpowiedz poprawna*/
+      {
+        std::cout << "Twoja odpowiedz: " << liczba << std::endl;
+        std::cout << ":) Odpowiedz poprwana" << std::endl;
+        std::cout << std::endl;
+
+        odp.DodajPoprawna();
+
+        std::cin.clear();
+      }
+      else /*Jesli odpowiedz bledna */
+      {
+        std::cout << "Twoja odpowiedz: " << liczba << std::endl;
+        std::cout << ":( Blad. Prawdidlowym wynikiem jest: " << WyrZ_PytanieTestowe.Oblicz() << std::endl;
+        std::cout << std::endl;
+
+        odp.DodajNiepoprawna();
+
+        std::cin.clear();
+      }
     }
   }
   catch (std::runtime_error &e)
@@ -59,12 +89,15 @@ int main(int argc, char **argv)
               << e.what();
   }
 
-  //Sprzezenie(liczba);
-  DodajPoprawna(odp);
-  DodajNiepoprawna(odp);
+  std::cout << " Koniec testu." << std::endl;
+  std::cout << std::endl;
+  std::cout << std::endl;
+  odp.WyswietlWyniki(); /*Wyswietlenie podsumowania*/
 
-  std::cout << " Koniec testu" << std::endl;
+  LZespolona argglow;
+
   std::cout << std::endl;
-  std::cout << std::endl;
-  WyswietlWyniki(odp);
+  std::cout << "Podaj liczbe zespolona dla ktorej chcesz otrzymac Argument glowny" << std::endl;
+  std::cin >> argglow;
+  std::cout << "Argument glowny: " << argglow.arg() << std::endl;
 }

@@ -43,20 +43,20 @@ TEST_CASE("LZespolona - wczytywanie standard")
 
     CHECK("(10.00+10.10i)" == out.str());
 }
-// TEST_CASE("WyrazenieZesp - wyswietlanie")
-// {
+TEST_CASE("WyrazenieZesp - wyswietlanie")
+{
 
-//     WyrazenieZesp x;
+    WyrazenieZesp x;
 
-//     x.Arg1 = {3, 3};
-//     x.Op = Op_Dodaj;
-//     x.Arg2 = {4, 8};
+    x.Arg1 = {3, 3};
+    x.Op = Op_Dodaj;
+    x.Arg2 = {4, 8};
 
-//     std::ostringstream out;
-//     out << x;
-//     std::cout << out.str() << std::endl;
-//     CHECK("(3.00+3.00i)+(4.00+8.00)" == out.str());
-// }
+    std::ostringstream out;
+    out << x;
+    std::cout << out.str() << std::endl;
+    CHECK("(3.00+3.00i)+(4.00+8.00i)" == out.str());
+}
 TEST_CASE("WyrazenieZesp - dodawanie")
 {
     WyrazenieZesp x;

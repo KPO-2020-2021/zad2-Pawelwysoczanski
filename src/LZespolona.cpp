@@ -5,22 +5,22 @@
 /****************************************************************
 *                       Modul LZespolona                        *
 *Kolejnosc wystepowania przeciazen i metod zapisanychw kodzie:  *
-*Operator + linia:                                              * 
-*Operator += linia:                                             *
-*Operator - linia:                                              *
-*Operator * linia:                                              * 
-*Operator / linia:                                              *   
-*Operator /= linia:                                             *
-*Operator / przez skalar linia:                                 *
-*Operator /= przez skalar linia                                 *
-*Sprzezenie() linia:                                            * 
-*Modul2() linia:                                                *
-*Operator == linia:                                             *
-*WczytajTenZnak() linia:                                        *
-*Operator >> linia:                                             *
-*Operator << linia:                                             *
-*Wyswietl() linia:                                              *
-*arg()  linia:                                                  *
+*Operator + linia:34                                            * 
+*Operator += linia:46                                           *
+*Operator - linia:62                                            *
+*Operator * linia:79                                            * 
+*Operator / linia:98                                            *   
+*Operator /= linia:113                                          *
+*Operator / przez skalar linia:134                              *
+*Operator /= przez skalar linia:146                             *
+*Sprzezenie() linia:164                                         * 
+*Modul2() linia:177                                             *
+*Operator == linia:194                                          *
+*WczytajTenZnak() linia:212                                     *
+*Operator >> linia:221                                          *
+*Operator << linia:232                                          *
+*Wyswietl() linia:243                                           *
+*arg()  linia:243 252                                           *
 *****************************************************************/
 
 /*!
@@ -31,24 +31,25 @@
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona operator+(LZespolona Skl1, LZespolona Skl2)
+LZespolona LZespolona::operator+(LZespolona Skl1)
 {
+
   LZespolona Wynik;
 
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
+  Wynik.re = Skl1.re + this->re;
+  Wynik.im = Skl1.im + this->im;
   return Wynik;
 }
 /*
 *Modyfikacja przeciazenia operatora dodawnia
 */
-LZespolona LZespolona::operator+=(LZespolona const &Skl2)
+LZespolona LZespolona::operator+=(LZespolona Skl1)
 {
+  LZespolona Wynik;
 
-  this.re += Skl2.re;
-  this.im += Skl2.im;
-
-  return this;
+  Wynik.re = Skl1.re + this->re;
+  Wynik.im = Skl1.im + this->im;
+  return Wynik;
 }
 /*!
  * Realizuje odjecie dwoch liczb zespolonych.
@@ -58,12 +59,12 @@ LZespolona LZespolona::operator+=(LZespolona const &Skl2)
  * Zwraca:
  *    Roznice dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona operator-(LZespolona Skl1, LZespolona Skl2)
+LZespolona LZespolona::operator-(LZespolona Skl2)
 {
   LZespolona Wynik;
 
-  Wynik.re = Skl1.re - Skl2.re;
-  Wynik.im = Skl1.im - Skl2.im;
+  Wynik.re = this->re - Skl2.re;
+  Wynik.im = this->im - Skl2.im;
 
   return Wynik;
 }
@@ -75,12 +76,12 @@ LZespolona operator-(LZespolona Skl1, LZespolona Skl2)
  * Zwraca:
  *    Iloczyn dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona operator*(LZespolona Skl1, LZespolona Skl2)
+LZespolona LZespolona::operator*(LZespolona Skl1)
 {
   LZespolona Wynik;
 
-  Wynik.re = (Skl1.re * Skl2.re) + ((Skl1.im * Skl2.im) * (-1));
-  Wynik.im = (Skl1.im * Skl2.re) + (Skl1.re * Skl2.im);
+  Wynik.re = (Skl1.re * this->re) + ((Skl1.im * this->im) * (-1));
+  Wynik.im = (Skl1.im * this->re) + (Skl1.re * this->im);
 
   return Wynik;
 }
@@ -94,26 +95,30 @@ LZespolona operator*(LZespolona Skl1, LZespolona Skl2)
  * Zwraca:
  *    Iloraz dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona operator/(LZespolona Skl1, LZespolona Skl2)
+LZespolona LZespolona::operator/(LZespolona Skl2)
 {
-  LZespolona Wynik;
+  LZespolona Wynik, licznik;
+  double mianownik;
 
-  Wynik = Skl1 * Sprzezenie(Skl2) / (Modul2(Skl2));
+  licznik = *this * Skl2.Sprzezenie();
+  mianownik = Skl2.modul2();
+
+  Wynik = licznik / mianownik;
 
   return Wynik;
 }
 /*
 *Modyfikacaj pzreciazenia opeartora dzielenia
 */
-LZespolona::LZespolona operator/=(LZespolona &Skl1, LZespolona const &Skl2)
+LZespolona LZespolona::operator/=(LZespolona Skl2)
 {
-  LZespolona Licznik, Wynik;
-  double Mianownik;
+  LZespolona Wynik, licznik;
+  double mianownik;
 
-  Licznik = Skl1 * Sprzezenie(Skl2);
-  Mianownik = Modul2(Skl2);
+  licznik = *this * Skl2.Sprzezenie();
+  mianownik = Skl2.modul2();
 
-  Wynik = Licznik / Mianownik;
+  Wynik = licznik / mianownik;
 
   return Wynik;
 }
@@ -126,27 +131,27 @@ LZespolona::LZespolona operator/=(LZespolona &Skl1, LZespolona const &Skl2)
  *    Wynik dzielenia dwoch skladnikow przekazanych jako parametry.
  */
 
-LZespolona operator/(LZespolona Skl1, double Skl2)
+LZespolona LZespolona::operator/(double Skl2)
 {
   if (Skl2 == 0)
   {
     throw std::runtime_error("Math error: Attempted to divide by Zero\n");
   }
   LZespolona Wynik;
-  Wynik.re = Skl1.re / Skl2;
-  Wynik.im = Skl1.im / Skl2;
+  Wynik.re = this->re / Skl2;
+  Wynik.im = this->im / Skl2;
   return Wynik;
 }
 
-LZespolona operator/=(LZespolona Skl1, double Skl2)
+LZespolona LZespolona::operator/=(double Skl2)
 {
   if (Skl2 == 0)
   {
     throw std::runtime_error("Math error: Attempted to divide by Zero\n");
   }
   LZespolona Wynik;
-  Wynik.re = Skl1.re / Skl2;
-  Wynik.im = Skl1.im / Skl2;
+  Wynik.re = this->re / Skl2;
+  Wynik.im = this->im / Skl2;
   return Wynik;
 }
 /*
@@ -156,10 +161,11 @@ LZespolona operator/=(LZespolona Skl1, double Skl2)
 *     Sprzezona liczbe zespolona.
 */
 
-void LZespolona::Sprzezenie()
+LZespolona LZespolona::Sprzezenie()
 {
   this->im = -this->im;
-  std::cout << this << std::endl;
+
+  return *this;
 }
 /*
 * Funkcja realizujaca zmiane liczby zespolonej na skalar,
@@ -168,11 +174,11 @@ void LZespolona::Sprzezenie()
 *     Sklara liczby zespolonej.
 */
 
-double Modul2(LZespolona Skl2)
+double LZespolona::modul2()
 {
   double Wynik;
 
-  Wynik = (Skl2.re * Skl2.re) + ((Skl2.im * Skl2.im) * (-1));
+  Wynik = (this->re * this->re) + ((this->im * this->im));
 
   return Wynik;
 }
@@ -234,36 +240,39 @@ std::ostream &operator<<(std::ostream &StrmWyj, LZespolona LZesp)
 * Reazlizuje wyswietlenie liczby zespolonej na wyjscie standardowe.
 *
 */
-void Wyswietl(LZespolona Skl1)
+void LZespolona::Wyswietl()
 {
 
-  std::cout << "(" << Skl1.re << std::showpos << Skl1.im << "i"
+  std::cout << "(" << re << std::showpos << im << "i"
             << ")" << std::endl;
 }
-double arg(LZespolona Skl1)
+/*
+*Funkcja odczytujaca wartosc Argumentu glownego z liczby zespolonej
+*/
+double LZespolona::arg()
 {
 
   double Arg;
 
-  if (Skl1.re > 0)
+  if (re > 0)
   {
-    Arg = atan2(Skl1.im, Skl1.re);
+    Arg = atan2(im, re);
   }
-  else if (Skl1.re < 0)
+  else if (re < 0)
   {
-    Arg = atan2(Skl1.re, Skl1.im);
+    Arg = atan2(re, im);
   }
-  else if (Skl1.re == 0)
+  else if (re == 0)
   {
-    if (Skl1.im > 0)
+    if (im > 0)
     {
       Arg = PI / 2;
     }
-    else if (Skl1.im < 0)
+    else if (im < 0)
     {
       Arg = -(PI / 2);
     }
-    else if (Skl1.im == 0)
+    else if (im == 0)
     {
       Arg = 0;
     }

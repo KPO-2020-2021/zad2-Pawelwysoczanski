@@ -2,6 +2,41 @@
 #include "./doctest/doctest.h"
 #include "LZespolona.hh"
 
+TEST_CASE("test LZespolona Sprzezenie 1 - dla niezreowej czesci im")
+{
+    LZespolona y, x;
+
+    x.re = 2;
+    x.im = 3;
+
+    y.re = 2;
+    y.im = -3;
+
+    CHECK((x.Sprzezenie()) == y);
+}
+TEST_CASE("test LZespolona Sprzezenie 2 - dla zreowej czesci im")
+{
+    LZespolona y, x;
+
+    x.re = 2;
+    x.im = 0;
+
+    y.re = 2;
+    y.im = 0;
+
+    CHECK((x.Sprzezenie()) == y);
+}
+TEST_CASE("test modul2")
+{
+    LZespolona x;
+    int y;
+
+    x = {3, 4};
+
+    y = 25;
+
+    CHECK(x.modul2() == y);
+}
 TEST_CASE("LZespolona - porownanie 1")
 {
     LZespolona x, y;
@@ -12,7 +47,7 @@ TEST_CASE("LZespolona - porownanie 1")
     y.re = 1;
     y.im = 1;
 
-    CHECK(x == y);
+    WARN_THROWS(x == y);
 }
 
 TEST_CASE("LZespolona - porownanie 2")
@@ -27,7 +62,18 @@ TEST_CASE("LZespolona - porownanie 2")
 
     CHECK(x == y);
 }
+TEST_CASE("LZespolona - porownanie 3")
+{
+    LZespolona x, y;
 
+    x.re = 2;
+    x.im = 2;
+
+    y.re = 2.00001;
+    y.im = 2.00001;
+
+    WARN_THROWS(x == y);
+}
 TEST_CASE("LZespolona - dzielenie przez skalar - standardowe 1")
 {
     LZespolona x, y;
@@ -47,11 +93,11 @@ TEST_CASE("LZespolona - dzielenie przez skalar - standardowe z przyblizeniem")
     LZespolona x, y;
     double t = 3;
 
-    x.re = 2;
-    x.im = 2;
+    x.re = 1;
+    x.im = 1;
 
-    y.re = 0.333;
-    y.im = 0.333;
+    y.re = 0.33;
+    y.im = 0.33;
     std::cout << (x / t) << std::endl;
     std::cout << y << std::endl;
     std::cout << ((x / t) == y) << std::endl;
@@ -68,47 +114,26 @@ TEST_CASE("LZespolona - dzielenie przez skalar - zero")
 
     WARN_THROWS(x / t);
 }
-
-TEST_CASE("LZespolona - wyswietlanie standard")
+TEST_CASE("LZespolona - delenie przez liczbe zespolona")
 {
-    LZespolona x;
+    LZespolona x, y, z;
 
-    x.re = 2;
-    x.im = 2;
+    x.re = 4;
+    x.im = 3;
 
-    std::ostringstream out;
+    y.re = 1;
+    y.im = -2;
 
-    out << x;
-    std::cout << out.str() << std::endl;
-    CHECK("(2.00+2.00i)" == out.str());
+    z.re = 2;
+    z.im = -1;
+
+    std::cout << (y.Sprzezenie()) << std::endl;
+    std::cout << (x * y.Sprzezenie()) << std::endl;
+    std::cout << (y.modul2()) << std::endl;
+    std::cout << (x / y) << std::endl;
+
+    CHECK((x / y) == z);
 }
-
-TEST_CASE("LZespolona - wyswietlanie zaokraglane")
-{
-    LZespolona x;
-
-    x.re = 2.0 / 3.0;
-    x.im = 2.0 / 3.0;
-
-    std::ostringstream out;
-
-    out << x;
-    std::cout << out.str() << std::endl;
-    CHECK("(0.67+0.67i)" == out.str());
-}
-
-TEST_CASE("LZespolona - wczytywanie standard")
-{
-    LZespolona x;
-
-    std::istringstream in("(10+10.10i)");
-    in >> x;
-    std::ostringstream out;
-    out << x; // lub strcmp? ew. == dla LZesp
-
-    CHECK("(10.00+10.10i)" == out.str());
-}
-
 TEST_CASE("LZespolona - dzielenie przez skalar - standardowe 2")
 {
     LZespolona x, y;
@@ -128,14 +153,14 @@ TEST_CASE("LZespolona - dzielenie przez skalar - standardowe z przyblizeniem 2")
     LZespolona x, y;
     double t = 3;
 
-    x.re = 2;
-    x.im = 2;
+    x.re = 1;
+    x.im = 1;
 
-    y.re = 0.333;
-    y.im = 0.333;
-    std::cout << (x / t) << std::endl;
+    y.re = 0.33;
+    y.im = 0.33;
+    std::cout << (x /= t) << std::endl;
     std::cout << y << std::endl;
-    std::cout << ((x / t) == y) << std::endl;
+    std::cout << ((x /= t) == y) << std::endl;
     CHECK((x /= t) == y);
 }
 

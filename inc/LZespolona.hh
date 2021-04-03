@@ -1,4 +1,3 @@
-#ifndef LZESPOLONA_HH
 #define LZESPOLONA_HH
 
 #include <iostream>
@@ -52,3 +51,4 @@ void WczytajTenZnak(std::istream &StrmWej, char Znak); /**/
 
 bool operator==(LZespolona Skl1, LZespolona Skl2); /*Funkja porownujaca dwie liczby zespolone*/
 #endif
+

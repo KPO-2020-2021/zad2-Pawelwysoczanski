@@ -135,15 +135,25 @@ TEST_CASE("test LZespolona Różnica 2")
 {
     LZespolona x, y, z;
     LZespolona a, b, c;
+    LZespolona u, w, k;
 
-    a.re = 0;
-    a.im = 0;
+    u.re = 0;
+    u.im = 0;
+
+    w.re = -1;
+    w.im = -2;
+
+    k.re = 1;
+    k.im = 2;
+
+    a.re = -1;
+    a.im = -2;
 
     b.re = 0.0;
     b.im = 0.0;
 
-    c.re = 0;
-    c.im = 0;
+    c.re = -1;
+    c.im = -2;
 
     x.re = 0;
     x.im = 0;
@@ -154,6 +164,7 @@ TEST_CASE("test LZespolona Różnica 2")
     z.re = -0.00001;
     z.im = -0.00001;
 
+    CHECK(u - w == k);
     CHECK(a - b == c);
     CHECK(x - y == z);
 }

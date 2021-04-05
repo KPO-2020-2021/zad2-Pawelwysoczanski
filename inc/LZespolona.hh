@@ -50,5 +50,7 @@ std::ostream &operator<<(std::ostream &StrmWyj, LZespolona Lzesp); /*Funkcja prz
 void WczytajTenZnak(std::istream &StrmWej, char Znak); /**/
 
 bool operator==(LZespolona Skl1, LZespolona Skl2); /*Funkja porownujaca dwie liczby zespolone*/
+
+bool operator!=(LZespolona Skl1, LZespolona Skl2);
 #endif
 

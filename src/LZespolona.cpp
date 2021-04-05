@@ -15,12 +15,13 @@
 *Operator /= przez skalar linia:146                             *
 *Sprzezenie() linia:164                                         * 
 *Modul2() linia:177                                             *
-*Operator == linia:194                                          *
-*WczytajTenZnak() linia:212                                     *
-*Operator >> linia:221                                          *
-*Operator << linia:232                                          *
-*Wyswietl() linia:243                                           *
-*arg()  linia:243 252                                           *
+*operator!= linia:194                                           *
+*Operator == linia:206                                          *
+*WczytajTenZnak() linia:224                                     *
+*Operator >> linia:233                                          *
+*Operator << linia:244                                          *
+*Wyswietl() linia:255                                           *
+*arg()  linia:243 264                                           *
 *****************************************************************/
 
 /*!
@@ -190,6 +191,17 @@ double LZespolona::modul2()
  * Zwraca:
  *    True dla równych liczb zespolonych.
  */
+bool operator!=(LZespolona Skl1, LZespolona Skl2)
+{
+  if ((Skl1.re != Skl2.re) && (Skl1.im == Skl2.im))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 
 bool operator==(LZespolona Skl1, LZespolona Skl2)
 {

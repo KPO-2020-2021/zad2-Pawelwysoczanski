@@ -2,6 +2,7 @@
 
 ## Zmiany
 Umieszczony program jest gotowy do oceny.
+
 W Makefailu została w prowadzona kompilacja 3 testu, test kompiluje się i uruchamia identycznie jak poprzednie make ./tests/bin/test_3 , ./test_3 
 
 ## Problemy i braki

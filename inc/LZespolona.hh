@@ -41,6 +41,10 @@ struct LZespolona
   void Wyswietl();/*Funkcja wyswietlajaca liczbe zespolona*/
 
   double arg();/*Funkcja odczytujaca wartosc Argumentu glownego liczby zespolonej*/
+  
+  bool operator==(LZespolona Skl2); /*Funkja porownujaca dwie liczby zespolone*/
+
+  bool operator!=(LZespolona Skl2);
 };
 
 std::istream &operator>>(std::istream &StrmWej, LZespolona &Lzesp); /*Funkcja przeciazenia operatora przesuniecia bitowego w prawo*/
@@ -49,8 +53,5 @@ std::ostream &operator<<(std::ostream &StrmWyj, LZespolona Lzesp); /*Funkcja prz
 
 void WczytajTenZnak(std::istream &StrmWej, char Znak); /**/
 
-bool operator==(LZespolona Skl1, LZespolona Skl2); /*Funkja porownujaca dwie liczby zespolone*/
-
-bool operator!=(LZespolona Skl1, LZespolona Skl2);
 #endif
 

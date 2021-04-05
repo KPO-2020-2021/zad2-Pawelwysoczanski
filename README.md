@@ -2,6 +2,7 @@
 
 ## Zmiany
 Umieszczony program jest gotowy do oceny.
+W Makefailu została w prowadzona kompilacja 3 testu, test kompiluje się i uruchamia identycznie jak poprzednie make ./tests/bin/test_3 , ./test_3 
 
 ## Problemy i braki
 Znieznanych mi przyczyn w teście 2 i 3 otrzymuje błedy wynikające z przeciązenia operatora dzielenia, którego konstrukcja jest prawidłowa problem polega na tym iż w testach owa operacja nie działa, a w przypadku uruchomienia sprawdzianu nie ma żadnych problemów.

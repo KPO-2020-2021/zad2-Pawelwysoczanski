@@ -47,7 +47,7 @@ TEST_CASE("LZespolona - porownanie 1")
     y.re = 1;
     y.im = 1;
 
-    WARN_THROWS(x == y);
+    CHECK(x != y);
 }
 
 TEST_CASE("LZespolona - porownanie 2")
@@ -69,10 +69,10 @@ TEST_CASE("LZespolona - porownanie 3")
     x.re = 2;
     x.im = 2;
 
-    y.re = 2.00001;
-    y.im = 2.00001;
+    y.re = 2.0000000001;
+    y.im = 2.0000000001;
 
-    WARN_THROWS(x == y);
+    CHECK(x == y);
 }
 TEST_CASE("LZespolona - dzielenie przez skalar - standardowe 1")
 {

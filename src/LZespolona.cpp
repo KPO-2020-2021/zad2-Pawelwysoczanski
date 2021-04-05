@@ -191,9 +191,9 @@ double LZespolona::modul2()
  * Zwraca:
  *    True dla równych liczb zespolonych.
  */
-bool operator!=(LZespolona Skl1, LZespolona Skl2)
+bool LZespolona::operator!=(LZespolona Skl2)
 {
-  if ((Skl1.re != Skl2.re) && (Skl1.im == Skl2.im))
+  if ((std::abs(this->re - Skl2.re) > MIN_DIFF) && (std::abs(this->im - Skl2.im) > MIN_DIFF))
   {
     return true;
   }
@@ -203,7 +203,7 @@ bool operator!=(LZespolona Skl1, LZespolona Skl2)
   }
 }
 
-bool operator==(LZespolona Skl1, LZespolona Skl2)
+bool LZespolona::operator==(LZespolona Skl2)
 {
   /*  if ((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im))
     return true;
@@ -212,7 +212,7 @@ bool operator==(LZespolona Skl1, LZespolona Skl2)
 */
   //alternatywnie, dla MIN_DIFF i wyników od użytkownika
 
-  if ((std::abs(Skl1.re - Skl2.re) <= MIN_DIFF) && (std::abs(Skl1.im - Skl2.im) <= MIN_DIFF))
+  if ((std::abs(this->re - Skl2.re) <= MIN_DIFF) && (std::abs(this->im - Skl2.im) <= MIN_DIFF))
   {
     return true;
   }
